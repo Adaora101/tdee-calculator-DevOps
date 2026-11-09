@@ -28,8 +28,21 @@ def calculate_bmr(weight_kg, height_cm, age_years, gender):
 
 def calculate_tdee(bmr, activity_level):
     """Calculates Total Daily Energy Expenditure based on activity multiplier."""
+    multipliers = {
+        'sedentary': 1.2,
+        'light': 1.375,
+        'moderate': 1.55,
+        'very_active': 1.725,
+        'extreme': 1.9
+    }
+
+    level = activity_level.lower()
+    if level not in multipliers:
+        raise ValueError(f"Invalid activity level. Choose from {list(multipliers.keys())}")
+
+    return bmr * multipliers[level]
     
-    pass
+    
 
 def get_calorie_goals(tdee):
     """Returns calorie targets for cutting, maintaining, and bulking."""
