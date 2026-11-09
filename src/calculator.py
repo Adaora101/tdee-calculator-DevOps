@@ -14,8 +14,17 @@ def convert_inches_to_cm(inches):
 
 def calculate_bmr(weight_kg, height_cm, age_years, gender):
     """Calculates Basal Metabolic Rate using the Mifflin-St Jeor equation."""
+    if weight_kg < 0 or height_cm < 0 or age_years < 0:
+        raise ValueError("Inputs cannot be negative")
     
-    pass
+    bmr = (10 * weight_kg) + (6.25 * height_cm) - (5 * age_years)
+    if gender.lower() == 'male':
+        return bmr + 5
+    elif gender.lower() == 'female':
+        return bmr - 161
+    else:
+        raise ValueError("Gender must be 'male' or 'female'")
+    
 
 def calculate_tdee(bmr, activity_level):
     """Calculates Total Daily Energy Expenditure based on activity multiplier."""
