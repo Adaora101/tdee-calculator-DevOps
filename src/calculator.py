@@ -46,8 +46,14 @@ def calculate_tdee(bmr, activity_level):
 
 def get_calorie_goals(tdee):
     """Returns calorie targets for cutting, maintaining, and bulking."""
+    return {
+        'maintenance': round(tdee, 2),
+        'mild_weight_loss': round(tdee - 250, 2),
+        'weight_loss': round(tdee - 500, 2),
+        'mild_weight_gain': round(tdee + 250, 2),
+        'weight_gain': round(tdee + 500, 2)
+    }
     
-    pass
 
 def calculate_macros(calories):
     """Calculates recommended macro splits (30% protein, 40% carbs, 30% fat)."""
